@@ -4,7 +4,7 @@ import Header from "src/components/Header";
 
 export default function Profile() {
 	const { user, setUserData, Moralis } = useMoralis();
-	const fileInputRef = useRef(null);
+	const fileInputRef = useRef<any>(null);
 	const [saving, setSaving] = useState(false);
 
 	const [address, setAddress] = useState<string>("");
@@ -17,7 +17,7 @@ export default function Profile() {
 		try {
 			setSaving(true);
 			const photo = fileInputRef?.current?.files[0];
-			const file = new Moralis.File("photo", photo);
+			const file: any = new Moralis.File("photo", photo);
 			await file.saveIPFS();
 			setUserData({
 				avatar: file.ipfs(),
